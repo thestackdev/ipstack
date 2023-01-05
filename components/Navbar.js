@@ -15,9 +15,7 @@ export default function () {
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse>
-        <Navbar.Link href="/navbars" active={true}>
-          Home
-        </Navbar.Link>
+        <Navbar.Link href="#">Home</Navbar.Link>
         <Navbar.Link href="#">About</Navbar.Link>
         <Navbar.Link href="#">Contact</Navbar.Link>
       </Navbar.Collapse>
