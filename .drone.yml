@@ -1,0 +1,14 @@
+kind: pipeline
+type: exec
+name: default
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+  - name: deploy
+    environment:
+    commands:
+      - docker compose up -d --build --force-recreate
+      - docker system prune -f -a
