@@ -1,0 +1,15 @@
+services:
+  ipstack:
+    image: fullstacklab/ipstack
+    container_name: ipstack
+    restart: unless-stopped
+    build: .
+    network_mode: traefik
+    env_file:
+      - .env
+    labels:
+      traefik.enable: true
+      traefik.http.services.ipstack.loadbalancer.server.port: 3000
+      traefik.http.routers.ipstack.rule: Host(`ipstack.fullstacklab.org`)
+      traefik.http.routers.ipstack.entrypoints: https
+      traefik.http.routers.ipstack.tls.certresolver: letsencrypt
