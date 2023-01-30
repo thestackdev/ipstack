@@ -11,7 +11,7 @@ steps:
     image: alpine
     volumes:
       - name: ssh_key
-        path: /root/.ssh/id_ed25519
+        path: /root/.ssh/
     commands:
       - echo hello
       - echo world
@@ -22,7 +22,7 @@ steps:
     image: alpine
     volumes:
       - name: ssh_key
-        path: /root/.ssh/id_ed25519
+        path: /root/.ssh/
     commands:
       - cat /root/.ssh/id_ed25519
 
