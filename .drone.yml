@@ -23,7 +23,7 @@ steps:
       - name: docker_sock
         path: /var/run/docker.sock
     commands:
-      - docker-compose up -d
+      - docker compose up -d
 
 volumes:
   - name: docker_sock
