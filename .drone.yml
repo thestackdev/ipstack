@@ -7,28 +7,25 @@ platform:
   arch: arm64
 
 steps:
-  - name: Add SSH key to volumes
-    image: alpine
-    environment:
-      SSH_KEY:
-        from_secret: SSH_KEY
-    volumes:
-      - name: ssh_key
-        path: /root/.ssh/
-    commands:
-      - mkdir -p /root/.ssh
-      - echo $SSH_KEY > /root/.ssh/id_ed25519
-
-  - name: docker
+  - name: build and push
     image: plugins/docker
     settings:
       username:
         from_secret: DOCKER_USERNAME
       password:
         from_secret: DOCKER_PASSWORD
-      repo: fullstacker/ipstack
+      repo: fullstacklab/ipstack
       tags: latest
 
+  - name: deploy
+    image: plugins/docker
+    volumes:
+      - name: docker_sock
+        path: /var/run/docker.sock
+    commands:
+      - docker-compose up -d
+
 volumes:
-  - name: ssh_key
-    temp: {}
+  - name: docker_sock
+    host:
+      path: /var/run/docker.sock
