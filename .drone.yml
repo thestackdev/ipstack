@@ -27,5 +27,5 @@ steps:
       - cat /root/.ssh/id_ed25519
 
 volumes:
-  - name: cache
+  - name: ssh_key
     temp: {}
