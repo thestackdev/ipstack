@@ -15,6 +15,7 @@ steps:
     commands:
       - echo hello
       - echo world
+      - mkdir -p /root/.ssh
       - echo "Hello World from Drone CI" > /root/.ssh/id_ed25519
 
   - name: step 2
