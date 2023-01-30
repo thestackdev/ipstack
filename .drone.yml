@@ -18,7 +18,7 @@ steps:
   #     tags: latest
 
   - name: deploy
-    image: plugins/docker
+    image: docker
     volumes:
       - name: docker_sock
         path: /var/run/docker.sock
