@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
-import { Button, Label, Spinner, TextInput } from 'flowbite-react'
-import ErrorModal from 'components/modals/Error'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
+import ErrorModal from 'components/modals/Error'
+import Output from 'components/Output'
+import { useEffect, useState } from 'react'
 
 export default function () {
   const [ipResponse, setIpResponse] = useState(null)
@@ -45,39 +46,37 @@ export default function () {
       <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
         Track your ip address, ip loaction, isp details and much more...
       </p>
-      <div className="grid grid-cols-1 lg:gap-36 h-full w-full md:h-1/2 lg:w-1/2 lg:grid-cols-2">
+      <div className="grid grid-cols-1 lg:gap-24 h-full w-full md:h-1/2 lg:w-3/4 lg:grid-cols-2">
         <form onSubmit={handleSubmit}>
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="ip-address" value="Your IP Address" />
+          <label
+            htmlFor="ip-search"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          >
+            Search
+          </label>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <MagnifyingGlassIcon className="h-5 w-5 text-gray-400 dark:text-gray-300" />
             </div>
-            <div className="flex flex-col gap-2 w-full items-center">
-              <TextInput
-                className="w-full"
-                id="ip-address"
-                type="text"
-                placeholder="Domain or IP Address"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                required={true}
-                autoComplete="off"
-              />
-              <Button type="submit">Submit</Button>
-            </div>
+            <input
+              type="search"
+              id="ip-search"
+              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Domain or IP Address"
+              autoComplete="off"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              required
+            />
+            <button
+              type="submit"
+              className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Search
+            </button>
           </div>
         </form>
-        {loading ? (
-          <div
-            className="h-full flex items-center justify-center"
-            role="status"
-          >
-            <Spinner size="lg" />
-          </div>
-        ) : (
-          <pre className="text-gray-900 dark:text-white overflow-x-scroll">
-            {ipResponse && JSON.stringify(ipResponse, undefined, 2)}
-          </pre>
-        )}
+        <Output loading={loading} ipResponse={ipResponse} />
       </div>
     </div>
   )

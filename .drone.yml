@@ -1,5 +1,5 @@
 kind: pipeline
-type: exec
+type: docker
 name: default
 
 platform:
@@ -7,8 +7,20 @@ platform:
   arch: arm64
 
 steps:
-  - name: deploy
-    environment:
+  - name: step 1
+    image: alpine
+    volumes:
+      - name: ssh_key
+        path: /root/.ssh/id_ed25519
     commands:
-      - docker compose up -d --build --force-recreate
-      - docker system prune -f -a
+      - echo hello
+      - echo world
+      - echo "Hello World from Drone CI" > /root/.ssh/id_ed25519
+
+  - name: step 2
+    image: alpine
+    volumes:
+      - name: ssh_key
+        path: /root/.ssh/id_ed25519
+    commands:
+      - cat /root/.ssh/id_ed25519
