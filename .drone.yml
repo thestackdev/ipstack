@@ -25,3 +25,7 @@ steps:
         path: /root/.ssh/id_ed25519
     commands:
       - cat /root/.ssh/id_ed25519
+
+volumes:
+  - name: cache
+    temp: {}
