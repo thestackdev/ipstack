@@ -11,19 +11,12 @@ export default function () {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetchIpAddress({ myIP: true })
+    fetchIpAddress()
   }, [])
 
-  const fetchIpAddress = async ({ myIP }) => {
+  const fetchIpAddress = async () => {
     try {
-      let ipAddress = inputValue
-      setLoading(true)
-      setIpResponse(null)
-      setError(null)
-      if (myIP)
-        ipAddress = (await axios.get('https://api.db-ip.com/v2/free/self')).data
-          .ipAddress
-      const response = await axios.get(`/api?ip=${ipAddress}`)
+      const response = await axios.get(`/api?ip=${inputValue}`)
       setIpResponse(response.data)
     } catch (error) {
       console.log(error)
@@ -34,7 +27,7 @@ export default function () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetchIpAddress({ myIP: false })
+    fetchIpAddress()
   }
 
   return (
