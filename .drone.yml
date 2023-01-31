@@ -7,23 +7,14 @@ platform:
   arch: arm64
 
 steps:
-  - name: build and push
-    image: plugins/docker
-    settings:
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
-      repo: fullstacklab/ipstack
-      tags: latest
-
   - name: deploy
     image: docker
     volumes:
       - name: docker_sock
         path: /var/run/docker.sock
     commands:
-      - docker compose up -d
+      - docker compose build
+      - docker compose up -d --force-recreate
 
 volumes:
   - name: docker_sock

@@ -3,7 +3,6 @@ services:
     image: fullstacklab/ipstack
     container_name: ipstack
     restart: unless-stopped
-    build: .
     network_mode: traefik
     labels:
       traefik.enable: true
