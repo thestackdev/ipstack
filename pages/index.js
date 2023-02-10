@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import axios from 'axios'
 import ErrorModal from 'components/modals/Error'
 import Output from 'components/Output'
+import { getIpDetails } from 'helpers/ip'
 import { useEffect, useState } from 'react'
 
 export default function () {
@@ -16,11 +16,11 @@ export default function () {
 
   const fetchIpAddress = async () => {
     try {
-      const response = await axios.get(`/api?ip=${inputValue}`)
-      setIpResponse(response.data)
+      const response = await getIpDetails(inputValue)
+      setIpResponse(response)
     } catch (error) {
       console.log(error)
-      setError(error?.response?.data?.message ?? 'Something went wrong')
+      setError(error?.message ?? 'Something went wrong')
     }
     setLoading(false)
   }
