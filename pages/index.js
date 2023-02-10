@@ -69,7 +69,7 @@ export default function () {
             </button>
           </div>
         </form>
-        <Output loading={loading} ipResponse={ipResponse} />
+        <Output loading={loading} ipResponse={ipResponse?.response} />
       </div>
     </div>
   )
