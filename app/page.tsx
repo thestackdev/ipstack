@@ -55,7 +55,7 @@ export default function Home() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full mx-10 items-start">
         <form
-          className="flex w-full mx-auto max-w-md flex-row gap-2 items-end"
+          className="flex w-full mx-6 lg:mx-auto max-w-md flex-row gap-2 items-end"
           onSubmit={fetchIpData}
         >
           <div className="w-full flex flex-col gap-2">
@@ -66,10 +66,7 @@ export default function Home() {
               placeholder="Enter IP Address"
             />
           </div>
-          <Button disabled={loading}>
-            {loading && <Loader className="mr-2 animate-spin" size={16} />}
-            Search
-          </Button>
+          <Button loading={loading}>Search</Button>
         </form>
         {data && (
           <pre className="overflow-x-scroll mx-6">
