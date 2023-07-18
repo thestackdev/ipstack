@@ -1,12 +1,8 @@
-import { Inter } from "next/font/google";
+import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/Toaster";
 import { ThemeProvider } from "@/components/theme-provider";
-import { cn } from "@/lib/utils";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
 import { Separator } from "@/components/ui/separator";
-
-const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
 
 export const metadata = {
   title: "IP Stack",
@@ -20,10 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={cn(`
-          ${inter.className} min-h-screen bg-background font-sans antialiased`)}
-      >
+      <body className="min-h-screen bg-background font-sans antialiased flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <Separator />

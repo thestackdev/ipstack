@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -38,7 +38,7 @@ export default function Home() {
 
   if (!pageReady)
     return (
-      <div className="min-h-screen w-screen flex items-center justify-center">
+      <div className="flex flex-grow h-full mt-auto items-center justify-center">
         <Loader2 className="animate-spin" size={64} />
       </div>
     );
